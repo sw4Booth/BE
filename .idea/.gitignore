@@ -1,0 +1,12 @@
+.gradle/
+build/
+
+.idea/
+*.iml
+
+*.env
+
+.DS_Store
+Thumbs.db
+
+mysql_data/
