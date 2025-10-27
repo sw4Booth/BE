@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  dev-db:
+    image: mysql:8.0
+    container_name: mysql_dev_1
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sw4booth_dev
+      MYSQL_USER: booth
+      MYSQL_PASSWORD: booth1234
+    ports:
+      - "3306:3306"
+    volumes:
+      - dev_db_data:/var/lib/mysql
+
+  test-db:
+    image: mysql:8.0
+    container_name: mysql_test_1
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sw4booth_test
+      MYSQL_USER: booth
+      MYSQL_PASSWORD: booth1234
+    ports:
+      - "3307:3306"
+    volumes:
+      - test_db_data:/var/lib/mysql
+
+volumes:
+  dev_db_data:
+  test_db_data:
