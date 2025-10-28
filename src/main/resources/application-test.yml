@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3307/sw4booth_test?serverTimezone=Asia/Seoul&useSSL=false
+    url: jdbc:mysql://localhost:3307/sw4booth_test?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
     username: booth
     password: booth1234
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -9,3 +9,7 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+

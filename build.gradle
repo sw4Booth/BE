@@ -27,8 +27,12 @@ dependencies {
     implementation 'org.locationtech.jts:jts-core'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
+    implementation 'com.google.zxing:core:3.5.3'
+    implementation 'com.google.zxing:javase:3.5.3'
+
     implementation 'software.amazon.awssdk:s3:2.25.11'
 
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 tasks.named('test') {
