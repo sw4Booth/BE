@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/share")
 @RequiredArgsConstructor
-public class ShareLinkController {
+public class ShareLinkController implements  ShareLinkControllerDocs {
 
     private final ShareLinkService service;
 

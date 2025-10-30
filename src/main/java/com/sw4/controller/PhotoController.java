@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("/photos")
 @RequiredArgsConstructor
-public class PhotoController {
+public class PhotoController implements PhotoControllerDocs {
 
     private final PhotoService photoService;
 

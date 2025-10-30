@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/guestbook")
 @RequiredArgsConstructor
-public class GuestbookController {
+public class GuestbookController implements GuestbookControllerDocs {
 
     private final GuestbookService service;
 
