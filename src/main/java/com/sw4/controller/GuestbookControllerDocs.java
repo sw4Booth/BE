@@ -4,6 +4,7 @@ import com.sw4.dto.GuestbookRequest;
 import com.sw4.dto.GuestbookResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -45,7 +46,11 @@ public interface GuestbookControllerDocs {
     GuestbookResponse create(GuestbookRequest req);
 
     @Operation(summary = "방명록 전체 조회 (페이지네이션)", description = "작성된 모든 방명록을 최신순으로 페이지별 조회합니다.")
-    @ApiResponses({
+    @Parameters({
+            @Parameter(name = "page", description = "페이지 번호 (0부터 시작)", example = "0"),
+            @Parameter(name = "size", description = "페이지 당 항목 수", example = "10"),
+            @Parameter(name = "sort", description = "정렬 기준 (필드,정렬방향)", example = "createdAt,desc")
+    })    @ApiResponses({
             @ApiResponse(responseCode = "200", description = "조회 성공",
                     content = @Content(schema = @Schema(implementation = Page.class),
                             examples = @ExampleObject(
