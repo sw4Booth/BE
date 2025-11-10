@@ -1,6 +1,6 @@
 app:
   share:
-    base-url: http://43.202.191.211:8080/share/
+    base-url: http://13.125.245.8:8080/share/
 
 spring:
   datasource:
