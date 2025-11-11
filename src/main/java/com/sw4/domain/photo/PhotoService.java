@@ -1,6 +1,7 @@
 package com.sw4.domain.photo;
 
 import com.sw4.domain.guestbook.GuestbookRepository;
+import com.sw4.domain.share.ShareLinkRepository;
 import com.sw4.exception.CustomException;
 import com.sw4.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ public class PhotoService {
     private final PhotoRepository photoRepository;
     private final S3Service s3Service;
     private final GuestbookRepository guestbookRepository;
+    private final ShareLinkRepository shareLinkRepository;
 
     @Transactional
     public Photo upload(MultipartFile file) {
@@ -33,12 +35,12 @@ public class PhotoService {
     @Transactional
     public void delete(Long id) {
         Photo photo = findById(id);
-        String imageUrl = photo.getImageUrl();
 
+        String imageUrl = photo.getImageUrl();
         guestbookRepository.findByPhotoId(id).ifPresent(guestbookRepository::delete);
+        shareLinkRepository.findByPhotoId(id).ifPresent(shareLinkRepository::delete);
 
         s3Service.deleteFile(imageUrl);
-
         photoRepository.delete(photo);
     }
 }

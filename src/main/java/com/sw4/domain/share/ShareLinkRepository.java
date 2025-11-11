@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ShareLinkRepository extends JpaRepository<ShareLink, Long> {
     Optional<ShareLink> findByUuid(String uuid);
+    Optional<ShareLink> findByPhotoId(Long photoId);
 }
