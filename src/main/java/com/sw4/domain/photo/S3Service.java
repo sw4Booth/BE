@@ -12,6 +12,7 @@ import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
 @Service
@@ -47,6 +48,26 @@ public class S3Service {
             return "https://" + bucket + ".s3." + region + ".amazonaws.com/" + fileName;
         } catch (IOException e) {
             throw new RuntimeException("S3 업로드 실패", e);
+        }
+    }
+
+    public void deleteFile(String imageUrl) {
+        try {
+            String key = imageUrl.substring(imageUrl.lastIndexOf('/') + 1);
+
+            AwsBasicCredentials credentials = AwsBasicCredentials.create(accessKey, secretKey);
+            S3Client s3 = S3Client.builder()
+                    .region(Region.of(region))
+                    .credentialsProvider(StaticCredentialsProvider.create(credentials))
+                    .build();
+
+            s3.deleteObject(DeleteObjectRequest.builder()
+                    .bucket(bucket)
+                    .key(key)
+                    .build());
+
+        } catch (Exception e) {
+            throw new RuntimeException("S3 삭제 실패", e);
         }
     }
 }

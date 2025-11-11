@@ -4,6 +4,9 @@ import com.sw4.domain.photo.Photo;
 import com.sw4.domain.photo.PhotoService;
 import com.sw4.dto.PhotoResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,5 +24,11 @@ public class PhotoController implements PhotoControllerDocs {
     public PhotoResponse upload(@RequestParam MultipartFile file) {
         Photo p = photoService.upload(file);
         return new PhotoResponse(p.getId(), p.getImageUrl());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        photoService.delete(id);
+        return ResponseEntity.ok().build();
     }
 }
