@@ -26,3 +26,6 @@ cloud:
       bucket: ${CLOUD_AWS_S3_BUCKET}
     region:
       static: ${CLOUD_AWS_REGION_STATIC}
+server:
+  forward-headers-strategy: framework
+
