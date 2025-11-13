@@ -10,8 +10,15 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:5173")
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH")
-                .allowCredentials(true);
+                .allowedOrigins(
+                        "http://localhost:5173",
+                        "https://booth.suhan.io",
+                        "https://sw4booth.s3.ap-northeast-2.amazonaws.com"
+                )
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "HEAD")
+                .allowedHeaders("*")
+                .exposedHeaders("ETag", "Location")
+                .allowCredentials(true)
+                .maxAge(3600);
     }
 }
