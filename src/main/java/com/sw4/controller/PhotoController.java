@@ -6,6 +6,8 @@ import com.sw4.dto.PhotoResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,10 +38,7 @@ public class PhotoController implements PhotoControllerDocs {
     }
 
     @GetMapping
-    public List<PhotoResponse> getAllPhotos() {
-        return photoService.findAll().stream()
-                .map(p -> new PhotoResponse(p.getId(), p.getImageUrl()))
-                .collect(Collectors.toList());
+    public Page<PhotoResponse> getAllPhotos(Pageable pageable) {
+        return photoService.findAll(pageable);
     }
-
 }

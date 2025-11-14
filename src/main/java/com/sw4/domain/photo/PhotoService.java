@@ -2,10 +2,13 @@ package com.sw4.domain.photo;
 
 import com.sw4.domain.guestbook.GuestbookRepository;
 import com.sw4.domain.share.ShareLinkRepository;
+import com.sw4.dto.PhotoResponse;
 import com.sw4.exception.CustomException;
 import com.sw4.exception.ErrorCode;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -46,8 +49,10 @@ public class PhotoService {
     }
 
     @Transactional(readOnly = true)
-    public List<Photo> findAll() {
-        return photoRepository.findAll();
+    public Page<PhotoResponse> findAll(Pageable pageable) {
+        return photoRepository.findAll(pageable)
+                .map(p -> new PhotoResponse(p.getId(), p.getImageUrl()));
     }
+
 
 }
