@@ -4,6 +4,7 @@ import com.sw4.domain.guestbook.GuestbookRepository;
 import com.sw4.domain.share.ShareLinkRepository;
 import com.sw4.exception.CustomException;
 import com.sw4.exception.ErrorCode;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,4 +44,10 @@ public class PhotoService {
         s3Service.deleteFile(imageUrl);
         photoRepository.delete(photo);
     }
+
+    @Transactional(readOnly = true)
+    public List<Photo> findAll() {
+        return photoRepository.findAll();
+    }
+
 }

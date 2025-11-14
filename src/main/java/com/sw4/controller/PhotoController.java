@@ -3,9 +3,12 @@ package com.sw4.controller;
 import com.sw4.domain.photo.Photo;
 import com.sw4.domain.photo.PhotoService;
 import com.sw4.dto.PhotoResponse;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,4 +34,12 @@ public class PhotoController implements PhotoControllerDocs {
         photoService.delete(id);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping
+    public List<PhotoResponse> getAllPhotos() {
+        return photoService.findAll().stream()
+                .map(p -> new PhotoResponse(p.getId(), p.getImageUrl()))
+                .collect(Collectors.toList());
+    }
+
 }
