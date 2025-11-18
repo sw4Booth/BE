@@ -17,7 +17,7 @@ public class WebConfig implements WebMvcConfigurer {
                         "http://booth.suhan.io",
                         "https://api-booth.suhan.io"
                 )
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "HEAD")
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "HEAD","OPTIONS")
                 .allowedHeaders("*")
                 .exposedHeaders("ETag", "Location")
                 .allowCredentials(true)
