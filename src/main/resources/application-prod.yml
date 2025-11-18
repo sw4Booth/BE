@@ -8,10 +8,10 @@ spring:
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
-    servlet:
-        multipart:
-          max-file-size: 50M
-          max-request-size: 50M
+  servlet:
+      multipart:
+          max-file-size: 52428800
+          max-request-size: 52428800
 
   jpa:
     hibernate:
