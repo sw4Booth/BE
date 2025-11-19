@@ -15,7 +15,9 @@ public class WebConfig implements WebMvcConfigurer {
                         "https://booth.suhan.io",
                         "https://sw4booth.s3.ap-northeast-2.amazonaws.com",
                         "http://booth.suhan.io",
-                        "https://api-booth.suhan.io"
+                        "https://api-booth.suhan.io",
+                        "https://staging.suhan.io",
+                        "http://staging.suhan.io"
                 )
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "HEAD","OPTIONS")
                 .allowedHeaders("*")
